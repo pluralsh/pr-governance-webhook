@@ -132,7 +132,8 @@ jobs:
           images: |
             ghcr.io/pluralsh/pr-governance-webhook
           tags: |
-            tags: type=semver,pattern={{version}}
+            type=raw,value=latest
+            type=semver,pattern={{version}},value=${{ needs.prepare.outputs.new_release_version }}
       - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
         run: |
