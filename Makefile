@@ -43,6 +43,9 @@ docker-push: ## push image
 	docker push ${IMG}
 
 ##@ Tests
+.PHONY: test
+test:
+	go test -v ./...
 
 .PHONY: lint
 lint: $(PRE) ## run linters

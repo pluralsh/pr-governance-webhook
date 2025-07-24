@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/pluralsh/pr-governance-webhook/api"
 )
@@ -24,7 +25,7 @@ type Client interface {
 func New(url string) Client {
 	return &client{
 		url:        url,
-		httpClient: &http.Client{},
+		httpClient: &http.Client{Timeout: 2 * time.Second},
 	}
 }
 
