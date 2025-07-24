@@ -1,5 +1,4 @@
 name: Publish
-
 on:
   push:
     tags:
@@ -60,20 +59,6 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build and push by digest
-      id: build
-      uses: docker/build-push-action@v6
-      with:
-        context: "."
-        file: "./Dockerfile"
-        tags: ${{ env.REGISTRY_IMAGE }}
-        labels: ${{ steps.meta.outputs.labels }}
-        platforms: ${{ matrix.platforms.platform }}
-        outputs: type=image,push-by-digest=true,name-canonical=true,push=true
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        build-args: |
-          GIT_COMMIT=${{ github.sha }}
     - name: Export digest
       run: |
         mkdir -p ${{ runner.temp }}/digests
