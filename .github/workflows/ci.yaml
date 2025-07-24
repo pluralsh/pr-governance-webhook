@@ -171,7 +171,6 @@ jobs:
           exit 1
 
       - name: Run E2E tests
-        runs-on: ubuntu-latest
         steps:
           - uses: actions/checkout@v4
           - uses: actions/setup-go@v5
