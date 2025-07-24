@@ -171,12 +171,11 @@ jobs:
           exit 1
 
       - name: Run E2E tests
-        working-directory: ${{ github.workspace }}
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v4
+          - uses: actions/setup-go@v5
+            with:
+              go-version-file: go.mod
+              check-latest: true
         run: go test -v ./test/e2e
-
-      - name: Dump logs if tests fail
-        if: failure()
-        run: docker logs pr-server
-
-      - name: Cleanup
-        run: docker rm -f pr-server || true
