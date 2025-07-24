@@ -171,6 +171,7 @@ jobs:
           exit 1
 
       - name: Run E2E tests
+        working-directory: ${{ github.workspace }}
         run: go test -v ./test/e2e
 
       - name: Dump logs if tests fail
