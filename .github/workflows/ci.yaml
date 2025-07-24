@@ -176,4 +176,4 @@ jobs:
           exit 1
 
       - name: Run E2E tests
-        run: go test -v ./test/e2e
+        run: go test -v ./test/e2e -tags="e2e"
