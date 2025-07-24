@@ -40,3 +40,21 @@ type CloseInput struct {
   State map[string]any
 }
 ```
+## Go client
+
+```go
+import "github.com/pluralsh/pr-governance-webhook/pkg/client"
+
+var pr = &api.PullRequest{
+    Url:   "https://example.com",
+    Title: "Test PR",
+    Body:  "Just testing",
+    Ref:   "test-branch",
+}
+c := client.New(server.URL)
+resp, err := c.Open(pr) // (map[string]any, error), echo response
+err = c.Close(pr, map[string]any{}) // err
+err = c.Confirm(pr, map[string]any{}) // err
+
+
+```

@@ -14,6 +14,7 @@ func Open(in *api.OpenInput) (map[string]any, error) {
 		"url":   in.Pr.Url,
 		"title": in.Pr.Title,
 		"ref":   in.Pr.Ref,
+		"body":  in.Pr.Body,
 	}
 	return state, nil
 }
